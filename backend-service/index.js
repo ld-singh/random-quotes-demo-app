@@ -11,7 +11,7 @@ app.get('/status', (req, res)=>{
 
 app.get('/api/quotes',(req, res)=>{
     res.status(200)
-    const randomQuote = Quote.getRandomQuote()	
+    const randomQuote = Quote.getQuote()	
     res.send(randomQuote)	
 
 })
