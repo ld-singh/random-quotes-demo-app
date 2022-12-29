@@ -10,7 +10,7 @@ app.get('/status', (req, res)=>{
 
 app.get('/',(req, res)=>{
     res.status(200)
-    res.send('Hello, World!')
+    res.sendFile(path.join(__dirname, '/index.html'));
 
 })
 
