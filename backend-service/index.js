@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 3001;
-const Quote = require('inspirational-quotes')
 
 
 app.get('/status', (req, res)=>{
@@ -11,8 +10,21 @@ app.get('/status', (req, res)=>{
 
 app.get('/api/quotes',(req, res)=>{
     res.status(200)
-    const randomQuote = Quote.getQuote()	
-    res.send(randomQuote)	
+    //api for quotes
+    var url="https://type.fit/api/quotes"    
+
+    // fetch the data from api
+    const response=await fetch(url)
+    console.log(typeof response)
+    //convert response to json and store it in quotes array
+    const allQuotes = await response.json()
+
+    // Generates a random number between 0 and the length of the quotes array
+    const indx = Math.floor(Math.random()*allQuotes.length)
+
+    //Store the quote present at the randomly generated index
+    const quote=allQuotes[indx]
+    res.send(quote)	
 
 })
 
