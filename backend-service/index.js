@@ -14,10 +14,13 @@ app.get('/api/quotes',(req, res)=>{
     var url="https://type.fit/api/quotes"    
 
     // fetch the data from api
-    const response=await fetch(url)
-    console.log(typeof response)
-    //convert response to json and store it in quotes array
-    const allQuotes = await response.json()
+    let allQuotes;
+    fetch(url)
+    .then((response) => response.json())
+    .then((body) => {
+        allQuotes = body
+
+    })
 
     // Generates a random number between 0 and the length of the quotes array
     const indx = Math.floor(Math.random()*allQuotes.length)
