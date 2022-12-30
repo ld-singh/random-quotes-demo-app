@@ -19,15 +19,14 @@ app.get('/api/quotes',(req, res)=>{
     .then((response) => response.json())
     .then((body) => {
         allQuotes = body
+        // Generates a random number between 0 and the length of the quotes array
+    	const indx = Math.floor(Math.random()*allQuotes.length)
 
+    	//Store the quote present at the randomly generated index
+    	const quote=allQuotes[indx]
+    	res.send(quote)
     })
-
-    // Generates a random number between 0 and the length of the quotes array
-    const indx = Math.floor(Math.random()*allQuotes.length)
-
-    //Store the quote present at the randomly generated index
-    const quote=allQuotes[indx]
-    res.send(quote)	
+  
 
 })
 
