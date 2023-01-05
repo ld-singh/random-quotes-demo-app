@@ -1,10 +1,13 @@
 const express = require('express')
 const path = require('path')
-const app = express()
-const port = process.env.PORT || 3000;
+const cors = require('cors')
 
-// server your css as static
-app.use(express.static(path.join(__dirname, "css")));
+const app = express()
+const port = process.env.PORT || 3000
+
+app.use(cors())
+app.set("view engine", "ejs")
+app.use(express.static(path.join(__dirname, "public")))
 
 app.get('/status', (req, res)=>{
     res.status(200)
@@ -12,11 +15,10 @@ app.get('/status', (req, res)=>{
 })
 
 app.get('/',(req, res)=>{
-    res.status(200)
-    res.sendFile(path.join(__dirname, '/index.html'));
-
+    res.render("index")
 })
 
 app.listen(port, ()=>{
-    console.log(`Example app listening on http://localhost:${port}`);
+    console.log(`Example app listening on http://localhost:${port}`)
 })
+
